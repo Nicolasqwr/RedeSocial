@@ -4,6 +4,12 @@ namespace Dankicode\Controllers;
 
 class HomeController {
     public function index() {
+
+        if(isset($_GET['loggout'])){
+            session_unset();
+            session_destroy();
+        }
+
         if(isset($_SESSION['login'])) {
             // Renderiza a Home do usuário
             \DankiCode\Views\MainView::render('home');
@@ -28,6 +34,7 @@ class HomeController {
                     if(\DankiCode\Bcrypt::check($senha, $senhaBanco)) {
                         // Senha correta, usuário logado com sucesso
                         $_SESSION['login'] = $usuario['email'];
+                        $_SESSION['nome'] = $dados['nome'];
                         \DankiCode\Utilidades::alerta('Logado com sucesso');
                         \DankiCode\Utilidades::redirect(INCLUDE_PATH);
                     } else {

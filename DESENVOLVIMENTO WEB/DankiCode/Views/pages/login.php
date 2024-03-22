@@ -21,7 +21,7 @@
         </div><!--div da logo-->
 
         <div class="form-login">
-            <form>
+            <form method='post'>
                 <input type="text" name="email" placeholder="E-mail">
 
                 <input type="password" name="senha" placeholder="Senha">

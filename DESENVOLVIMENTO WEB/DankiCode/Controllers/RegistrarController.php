@@ -1,6 +1,6 @@
 <?php
 
-    namespace Dankicode\Controllers;
+    namespace DankiCode\ControLLers;
 
     class RegistrarController{
         public function index(){

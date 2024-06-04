@@ -68,6 +68,31 @@
             }
         }
 
+        public static function listarAmizadePendente(){
+
+            $pdo = \DankiCode\Mysql::connect();
+
+            $listarAmizadePendente = $pdo->prepare("SELECT * FROM amizades WHERE recebeu = ? AND status = 0 ");
+
+            $listarAmizadePendente->execute(array($_SESSION['id']));
+
+            return $listarAmizadePendente->fetchAll();
+
+        }
+
+        public static function getUsuarioById($id){
+
+            $pdo = \DankiCode\Mysql::connect();
+
+            $usuario = $pdo->prepare("SELECT * FROM usuarios WHERE id = ? ");
+
+            $usuario->execute(array($id));
+
+            return $usuario->fetch();
+
+        }
+
+
         public static function existePedidoAmizade($idPara) {
             // Iniciar a sessão se ainda não foi iniciada
             if (session_status() == PHP_SESSION_NONE) {
@@ -95,6 +120,21 @@
             }
 
         }
+
+        public static function atualizarPeididoAmizade($enviou, $status) {
+            $pdo = \DankiCode\MySql::connect();
+            
+            if($status == 0) {
+                // Pedido recusado
+                $del = $pdo->prepare("DELETE FROM amizades WHERE enviou = ? AND recebeu = ? AND status = 0");
+                $del->execute(array($enviou, $_SESSION['id']));
+            } else if($status == 1) {
+                // Pedido aceito
+                $aceitarPedido = $pdo->prepare('UPDATE amizades SET status = 1 WHERE enviou = ? AND recebeu = ?');
+                $aceitarPedido->execute(array($enviou, $_SESSION['id']));
+            }
+        }
+        
 
     }
 

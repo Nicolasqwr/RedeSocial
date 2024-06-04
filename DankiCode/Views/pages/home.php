@@ -34,32 +34,25 @@
             </div>
             <div class="friend-request-feed">
                 <h4>solicitções de amizade</h4>
-                <div class="friend-request-single">
-                    <img src="<?php echo INCLUDE_PATH_STATIC ?>images/perfil-placeholder.jpeg" alt="">
-                    <div class="friend-request-single-info">
-                        
-                        <h3>Otavio da Silva</h3>
-                        <p><a href="#">Aceitar</a> | <a href="#">Recusar</a></p>
-                    </div>
-                </div><!--Friend single request-->
 
-                <div class="friend-request-single">
-                    <img src="<?php echo INCLUDE_PATH_STATIC ?>images/perfil-placeholder.jpeg" alt="">
-                    <div class="friend-request-single-info">
-                        
-                        <h3>Otavio da Silva</h3>
-                        <p><a href="#">Aceitar</a> | <a href="#">Recusar</a></p>
-                    </div>
-                </div><!--Friend single request-->
+                <?php 
+                
+                    foreach(\DankiCode\Models\UsuariosModel::listarAmizadePendente() as $key=>$value){
 
+                        $usuarioInfo = \DankiCode\Models\UsuariosModel::getUsuarioById($value['enviou'])
+                
+                ?>
                 <div class="friend-request-single">
                     <img src="<?php echo INCLUDE_PATH_STATIC ?>images/perfil-placeholder.jpeg" alt="">
                     <div class="friend-request-single-info">
                         
-                        <h3>Otavio da Silva</h3>
-                        <p><a href="#">Aceitar</a> | <a href="#">Recusar</a></p>
+                        <h3><?php echo $usuarioInfo['nome'] ?></h3>
+                        <p><a href="<?php echo INCLUDE_PATH ?>?aceitarAmizade=<?php echo $usuarioInfo['id'] ?>">Aceitar</a> | <a href="<?php echo INCLUDE_PATH ?>?recusarAmizade=<?php echo $usuarioInfo['id'] ?>">Recusar</a></p>
                     </div>
                 </div><!--Friend single request-->
+                    <?php  
+                        };
+                    ?>
             </div>
         </div><!--feeding-->
 

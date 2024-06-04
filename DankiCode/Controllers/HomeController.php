@@ -17,6 +17,24 @@ class HomeController {
 
         if (isset($_SESSION['login'])) {
             // Renderiza a Home do usuário
+
+            //Existe pedido de amizade?
+
+            if(isset($_GET['recusarAmizade'])){
+                $idEnviou = (int) $_GET['recusarAmizade']; // Corrigido para $_GET
+                \DankiCode\Models\UsuariosModel::atualizarPeididoAmizade($idEnviou, 0);
+            
+                \DankiCode\Utilidades::alerta('Amizade recusada :(');
+                \DankiCode\Utilidades::redirect(INCLUDE_PATH);
+            
+            } else if(isset($_GET['aceitarAmizade'])){
+                $idEnviou = (int) $_GET['aceitarAmizade']; // Corrigido para $_GET
+                \DankiCode\Models\UsuariosModel::atualizarPeididoAmizade($idEnviou, 1);
+            
+                \DankiCode\Utilidades::alerta('Amizade aceita :)');
+                \DankiCode\Utilidades::redirect(INCLUDE_PATH);
+            }
+
             \DankiCode\Views\MainView::render('home');
         } else {
             // Renderiza a página de login

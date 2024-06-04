@@ -1,66 +1,106 @@
-.container-comunidade h4{
-	font-size: 25px;
-	color:#454545;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
 }
 
-.comunidade{
-	width:100%;
+body, html {
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    overflow-x: hidden; /* Mantém a rolagem horizontal, se necessário */
+    overflow-y: hidden; /* Esconde a barra de rolagem vertical */
 }
 
-.container-comunidade-wraper{
-	display: flex;
-	flex-wrap: wrap;
-	width:100%;
-	margin:40px 0;
+/* Para navegadores baseados em Webkit (Chrome, Safari) */
+body::-webkit-scrollbar {
+    width: 0; /* Esconde a barra de rolagem vertical */
 }
 
-.container-comunidade-single{
-	width:32%;
-	margin-bottom: 10px;
-	margin-right: 1%;
-	background-color: white;
-	display: flex;
-	
-	
-
+/* Para Firefox */
+body {
+    scrollbar-width: none; /* Firefox 64 */
 }
 
-.container-comunidade-single .img-comunidade-user-single{
-	width:20%;
-	height: 100%;
-	background-color: blue;
+.container-comunidade h4 {
+    font-size: 25px;
+    color: #333333; /* Letras mais escuras */
+    font-weight: 500; /* Ajustando o peso da fonte */
 }
 
-.img-comunidade-user-single img{width: 100%;height: 100%;}
-
-.container-comunidade-single .info-comunidade-user-single{
-	width:80%;
-	padding:20px;
-
+.comunidade {
+    width: 100%;
 }
 
-.info-comunidade-user-single h2{
-	font-weight: bold;
-	font-size: 15px;
-	color:#454545;
+.container-comunidade-wraper {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 40px 0;
 }
 
-.info-comunidade-user-single p{
-	font-size: 15px;
-	color:#454545;
-	opacity: 0.4;
-	margin:10px 0;
+.container-comunidade-single {
+    width: 32%;
+    margin-bottom: 10px;
+    margin-right: 1%;
+    background-color: white;
+    display: flex;
+    border: 1px solid #ccc;
 }
 
-
-
-.btn-solicitar-amizade a{
-	border:1px solid #069;
-	padding:5px;
-	color:#069;
-	display: inline-block;
-	font-size: 13px;
-	margin:5px 0;
-	text-decoration:none;
+.container-comunidade-single:last-child {
+    margin-right: 0;
 }
 
+.img-comunidade-user-single {
+    width: 20%;
+    background-color: blue;
+}
+
+.img-comunidade-user-single img {
+    width: 100%;
+    height: 100%;
+}
+
+.info-comunidade-user-single {
+    width: 80%;
+    padding: 20px;
+}
+
+.info-comunidade-user-single h2 {
+    font-weight: 600; /* Ajustando o peso da fonte */
+    font-size: 15px;
+    color: #333333; /* Letras mais escuras */
+}
+
+.info-comunidade-user-single p {
+    font-size: 15px;
+    color: #333333; /* Letras mais escuras */
+    opacity: 0.6;
+    margin: 10px 0;
+    font-weight: 400; /* Ajustando o peso da fonte */
+}
+
+.btn-solicitar-amizade a {
+    border: 1px solid #006400; /* Verde mais escuro */
+    padding: 5px;
+    color: #006400; /* Verde mais escuro */
+    display: inline-block;
+    font-size: 13px;
+    margin: 5px 0;
+    text-decoration: none;
+    font-weight: 500; /* Ajustando o peso da fonte */
+}
+
+@media screen and (max-width: 768px) {
+    .container-comunidade-single {
+        width: 48%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container-comunidade-single {
+        width: 100%;
+        margin-right: 0;
+    }
+}

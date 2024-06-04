@@ -115,7 +115,13 @@
 								<h2><?php echo $value['nome'] ?></h2>
 								<p><?php echo $value['email'] ?></p>
 							<div class="btn-solicitar-amizade">
-							<a href="<?php echo INCLUDE_PATH ?>comunidade?solicitarAmizade=<?php echo $value['id'] ?>">Pedir amizade</a>
+							<?php
+								if (\DankiCode\Models\UsuariosModel::existePedidoAmizade($value['id'])) {
+								?>
+									<a href="javascript:void(0)" style="color:red; border: 2px solid red; padding: 5px 10px; text-decoration: none; display: inline-block;">Pedido pendente</a>
+								<?php } else { ?>
+									<a href="<?php echo INCLUDE_PATH ?>comunidade?solicitarAmizade=<?php echo $value['id']; ?>" style="color:green; border: 2px solid green; padding: 5px 10px; text-decoration: none; display: inline-block;">Pedir amizade</a>
+								<?php } ?>
 							</div>
 							</div>
 

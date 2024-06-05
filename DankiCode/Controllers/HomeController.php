@@ -29,10 +29,15 @@ class HomeController {
             
             } else if(isset($_GET['aceitarAmizade'])){
                 $idEnviou = (int) $_GET['aceitarAmizade']; // Corrigido para $_GET
-                \DankiCode\Models\UsuariosModel::atualizarPeididoAmizade($idEnviou, 1);
+                if(\DankiCode\Models\UsuariosModel::atualizarPeididoAmizade($idEnviou, 1)){
+                    \DankiCode\Utilidades::alerta('Amizade aceita :)');
+                    \DankiCode\Utilidades::redirect(INCLUDE_PATH);
+
+                }else{
+                    \DankiCode\Utilidades::alerta('ocorreu um erro :(');
+                    \DankiCode\Utilidades::redirect(INCLUDE_PATH);
+                }
             
-                \DankiCode\Utilidades::alerta('Amizade aceita :)');
-                \DankiCode\Utilidades::redirect(INCLUDE_PATH);
             }
 
             \DankiCode\Views\MainView::render('home');

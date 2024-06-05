@@ -11,8 +11,10 @@ class ComunidadeController{
                 $idPara = (int) $_GET['solicitarAmizade'];
                 if(\DankiCode\Models\UsuariosModel::solicitarAmizade($idPara)){
                     \DankiCode\Utilidades::alerta('Pedido Enviado');
+                    \DankiCode\Utilidades::redirect(INCLUDE_PATH."comunidade");
                 }else{
                     \DankiCode\Utilidades::alerta('Erro ao enviar');
+                    \DankiCode\Utilidades::redirect(INCLUDE_PATH."comunidade");
                 }
             }
 

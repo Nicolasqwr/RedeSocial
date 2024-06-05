@@ -17,29 +17,42 @@
         <?php include('includes/sidebar.php'); ?>
         <div class="feed">
             <div class="comunidade">
+                <!-- Amigos Section -->
                 <div class="container-comunidade">
                     <h4>Amigos</h4>
-                    <div class="container-comunidade-wraper">
-                        <?php for ($i = 0; $i < 6; $i++) { ?>
-                        <div class="container-comunidade-single">
-                            <div class="img-comunidade-user-single">
-                                <img src="<?php echo INCLUDE_PATH_STATIC ?>images/avatar.jpg" />
-                            </div>
-                            <div class="info-comunidade-user-single">
-                                <h2>Guilherme Grillo</h2>
-                                <p>guilherme@gmail.com</p>
-                            </div>
-                        </div>
+					<div class="container-comunidade-wraper">
+
+                        <?php foreach(\DankiCode\Models\UsuariosModel::listarAmigos() as $key => $value){ ?>
+						<div class="container-comunidade-single">
+							<div class="img-comunidade-user-single">
+								<img src="<?php echo INCLUDE_PATH_STATIC ?>images/avatar.jpg" />
+							</div>
+							<div class="info-comunidade-user-single">
+								<h2><?php echo $value['nome']; ?></h2>
+								<p><?php echo $value['email']; ?></p>
+							</div>
+						</div>
                         <?php } ?>
-                    </div>
                 </div>
                 <br/>
+                <!-- Comunidade Section -->
                 <div class="container-comunidade">
                     <h4>Comunidade</h4>
                     <div class="container-comunidade-wraper">
                         <?php 
                         $comunidade = \DankiCode\Models\UsuariosModel::listarComunidade();
                         foreach ($comunidade as $key => $value) {
+                            // Verificar se são amigos
+                            $pdo = \DankiCode\MySql::connect();
+                            $verificaAmizade = $pdo->prepare("SELECT * FROM amizades WHERE (enviou = ? AND recebeu = ? 
+                            AND status = 1) OR  (enviou = ? AND recebeu = ? AND status = 1)");
+                            $verificaAmizade->execute(array($value['id'],$_SESSION['id'],$_SESSION['id'],$value['id']));
+
+                            if($verificaAmizade->rowCount() == 1){
+                                // Já são amigos, não precisa listar
+                                continue;
+                            }
+
                             if($value['id'] == $_SESSION['id']){
                                 continue;
                             }

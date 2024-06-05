@@ -131,8 +131,48 @@
             } else if($status == 1) {
                 // Pedido aceito
                 $aceitarPedido = $pdo->prepare('UPDATE amizades SET status = 1 WHERE enviou = ? AND recebeu = ?');
+
+
                 $aceitarPedido->execute(array($enviou, $_SESSION['id']));
+
+                if($aceitarPedido->rowCount() == 1){
+                    return true;
+                }else{
+                    returnfalse;
+                }
+
+
             }
+        }
+
+
+        public static function listarAmigos(){
+
+            $pdo = \DankiCode\MySql::connect();
+
+            $amizades = $pdo->prepare("SELECT * FROM amizades WHERE (enviou = ? AND status = 1) OR (recebeu = ? AND status = 1)");
+            $amizades->execute(array($_SESSION['id'],$_SESSION['id']));
+
+            $amizades = $amizades->fetchAll();
+            $amigosConfirmado = array();
+
+            foreach ($amizades as $key => $value) {
+                if($value['enviou'] == $_SESSION['id']){
+                    $amigosConfirmado[] = $value['recebeu'];
+                }else{
+                    $amigosConfirmado[] = $value['enviou'];
+                }
+            }
+
+            $listaAmigos = array();
+
+            foreach($amigosConfirmado as $key => $value){
+                $listaAmigos[$key]['nome'] = self::getUsuarioById($value)['nome'];
+                $listaAmigos[$key]['email'] = self::getUsuarioById($value)['email'];
+            }
+
+            return $listaAmigos;
+
         }
         
 

@@ -17,25 +17,45 @@
     <?php 
 			include('includes/sidebar.php'); 
 		?>
-        <div class="feed">
-            <div class="feed-single-post">
-                <div class="feed-single-post-autor">
-                    <div class="img-single-post-autor">
-                        <!--tdo colocar imagem placeholder-->
-                    </div>
-                    <h2>Nicolas Barbosa</h2>
-                    <span>14:31 22/03/2024</span>
-                    <div class="feed-single-post-content">
-                        <p>segue a lista dos mais viado de jaguaribe: joão lucas, jader, luis paulo, fabricio neguim
-                            deyvid, bruno e pedro lucas e todos nessa lista pegou a mãe de jl
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="friend-request-feed">
-                <h4>solicitções de amizade</h4>
+<div class="feed">
+			<div class="feed-wraper">
+				
+                <div class="feed-form">
+					<form method="post">
+						<textarea require="" name="post_content" placeholder="O que está passando na sua cachola?"></textarea>
+						<input type="hidden" name="post_feed" value="1">
+						<input class="butao" type="submit" name="acao" value="Postar">
+					</form>
+                </div><!--feed form-->
 
-                <?php 
+				<?php 
+				
+				$retrievePost = \DankiCode\Models\HomeModel::retriveFriends();
+
+				foreach ($retrievePost as $key => $value){
+				
+				?>
+
+			<div class="feed-single-post">
+				<div class="feed-single-post-author">
+					<div class="img-single-post-author">
+						<!--todo:COLOCAR IMAGEM PLACEHOLDER-->
+						<img src="<?php echo INCLUDE_PATH_STATIC ?>images/avatar.jpg" />
+					</div>
+					<div class="feed-single-post-author-info">
+						<h3><?php echo $value['usuario'] ?></h3>
+						<p><?php echo date('d/m/y H:i',strtotime($value['data'])) ?></p>
+					</div>
+				</div>
+				<div class="feed-single-post-content">
+					<?php echo $value['conteudo'] ?>
+				</div>
+			</div>
+			<?php } ?>
+			</div>
+			<div class="friends-request-feed">
+				<h4>Solicitações de amizade</h4>
+				<?php 
                 
                     foreach(\DankiCode\Models\UsuariosModel::listarAmizadePendente() as $key=>$value){
 
@@ -54,7 +74,10 @@
                         };
                     ?>
             </div>
-        </div><!--feeding-->
+			</div>
+
+            
+		</div><!--feed-->
 
     </section><!--section main feed-->
 

@@ -21,6 +21,7 @@
         </div><!--div da logo-->
 
         <div class="form-login">
+            <h2>Acessar sua conta</h2>
             <form method='post'>
                 <input type="text" name="email" placeholder="E-mail">
 

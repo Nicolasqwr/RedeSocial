@@ -40,6 +40,25 @@ class HomeController {
             
             }
 
+            //existe postagem no feed?
+            
+            if(isset($_POST['post_feed'])){
+                \DankiCode\Models\HomeModel::postFeed($_POST['post_content']);
+
+                if($_POST['post_content'] == ''){
+                    \DankiCode\Utilidades::alerta('Voce precisa digitar algo pra postar');
+                    \DankiCode\Utilidades::redirect(INCLUDE_PATH);
+                }
+
+                \DankiCode\Utilidades::alerta('Post feito com sucesso!');
+                \DankiCode\Utilidades::redirect(INCLUDE_PATH);
+            }
+
+
+
+
+
+
             \DankiCode\Views\MainView::render('home');
         } else {
             // Renderiza a página de login

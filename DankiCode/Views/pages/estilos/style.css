@@ -7,7 +7,7 @@
 
 body, html {
     height: 100%;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(228, 227, 227);
 }
 
 .sidebar {
@@ -24,30 +24,83 @@ body, html {
 
 .form-container-login {
     position: absolute;
+    transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
     max-width: 1100px;
     width: 80%; /* Reduzindo a largura máxima para telas menores */
 }
 
-.form-container-login .form-login {
-    width: 100%; /* Ajustando o formulário para ocupar toda a largura do container */
-    margin-left: 0; /* Removendo a margem à esquerda */
+.form-container-login{
+    display: flex;
+}
+
+.logoo {
+    width: 1000px;
+    margin-top: 100px;
+}
+
+.logo-login {
+    padding: 20px;
+}
+
+.form-login{
+    background-color: white;
+    width: 60%;
+    text-align: center;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.form-login h2{
+    color: #3d3d3d;
 }
 
 .form-login input[type=text],
-.form-login input[type=password] {
+.form-login input[type=password]{
+    font-size: 18px;
+    outline: none;
+    margin: 15px 0;
+    border: none;
     width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #ccc;
 }
 
-.form-login input[type=submit],
-.form-login a {
-    width: 100%;
-    max-width: 300px; /* Limitando a largura máxima dos botões */
-    margin: 10px auto; /* Centralizando os botões horizontalmente */
-    box-sizing: border-box; /* Garantindo que o padding não afete a largura total */
+
+.form-login input[type="submit"]{
+    background-color:#f9f9f9;
+    -webkit-border-radius:13px;
+	-moz-border-radius:13px;
+	border-radius:13px;
+	border:2px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:18px;
+	font-weight:bold;
+	padding:15px 76px;
+	text-decoration:none;
+    margin-top: 10px;
 }
+
+.form-login input[type="submit"]:hover{
+    background-color:#e9e9e9;
+}
+
+.form-login input[type="submit"]:active{
+    position:relative;
+	top:1px;
+
+}
+
+.form-login p {
+    color: #3d3d3d;
+    padding: 20px;
+    font-size: 18px;
+}
+
 
 /* Responsividade */
 

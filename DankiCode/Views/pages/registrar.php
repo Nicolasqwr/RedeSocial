@@ -21,7 +21,7 @@
         </div><!--div da logo-->
 
         <div class="form-login">
-            <h3 style="text-align: center; color: #7b19ca">Crie sua conta!</h3>
+            <h3 style="text-align: center; color: ##3d3d3d">Crie sua conta!</h3>
             <form method="post">
                 <input class="nom" type="text" placeholder="Coloque seu nome" name="nome">
 

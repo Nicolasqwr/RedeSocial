@@ -26,7 +26,7 @@
                 else{
                     //registrar usuario
                     $senha = \DankiCode\Bcrypt::hash($senha);
-                    $registro = \DankiCode\MySql::connect()->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)");
+                    $registro = \DankiCode\MySql::connect()->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?, '')");
                     $registro->execute(array($nome, $email, $senha));
 
                     \DankiCode\Utilidades::alerta('registrado com sucesso');

@@ -39,11 +39,32 @@
 			<div class="feed-single-post">
 				<div class="feed-single-post-author">
 					<div class="img-single-post-author">
-						<!--todo:COLOCAR IMAGEM PLACEHOLDER-->
+						<?php
+
+						if(!isset($value['me']) && $value['img'] == ''){
+					?>
 						<img src="<?php echo INCLUDE_PATH_STATIC ?>images/avatar.jpg" />
+
+					<?php }else if(!isset($value['me'])){ ?>
+						<img src="<?php echo INCLUDE_PATH ?>uploads/<?php echo $value['img'] ?>" />
+					<?php } ?>
+					<?php
+						if(isset($value['me']) && $_SESSION['img'] == ''){
+					?>
+
+						<img src="<?php echo INCLUDE_PATH_STATIC ?>images/avatar.jpg" />
+					<?php }else if(isset($value['me'])){ ?>
+						<img src="<?php echo INCLUDE_PATH ?>uploads/<?php echo $_SESSION['img'] ?>" />
+					<?php } ?>
+						
 					</div>
 					<div class="feed-single-post-author-info">
-						<h3><?php echo $value['usuario'] ?></h3>
+						<?php if(isset($value['me'])){?>
+							<h3><?php echo $_SESSION['nome']; ?></h3>
+						<?php }else{ ?>
+							<h3><?php echo $value['usuario']; ?></h3>
+
+						<?php } ?>
 						<p><?php echo date('d/m/y H:i',strtotime($value['data'])) ?></p>
 					</div>
 				</div>

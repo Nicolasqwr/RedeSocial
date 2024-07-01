@@ -175,7 +175,7 @@ section.main-feed{
         width: 100%;
         height: 120px;
         border: 2px solid #ccc;
-        border-radius: 20px;
+        border-radius: 15px;
         resize: none;
         outline: none;
         padding: 10px;
@@ -189,31 +189,86 @@ section.main-feed{
     }
 
     .feed-form input[type=submit] {
-		text-align: right;
-        margin-top: 5px;
-        text-align: right;
-        padding: 10px 20px;
-        margin-bottom: 20px;
-        border-radius: 10rem;
-        color: #2a2a2a;
-        text-transform: uppercase;
-        font-size: 1rem;
-        letter-spacing: .15rem;
-        transition: all .3s;
-        position: relative;
-        overflow: hidden;
-        z-index: 1;
-        cursor: pointer;
-        background-color: #ececec;
+		background-color:#f3f3f3;
+		border-radius:15px;
+		border:1px solid #727171;
+		display:inline-block;
+		cursor:pointer;
+		color:#666666;
+		font-size:15px;
+		font-weight:bold;
+		padding:10px 24px;
+		text-decoration:none;
+		margin-bottom: 10px;
     }
 
     .feed-form input[type=submit]:hover {
-        color: #e5e5e5;
-        background-color: #454545;
+		background-color:#c0c0c0;
     }
+
+	.feed-form input[type=submit]:active{
+		position:relative;
+		top:1px;
+	}
 
 	.feed-single-post-author-info p{
 		font-weight: 600;
-		font-size: 13px;
+		font-size: 12px;
 		pointer-events: none;
 	}
+
+
+
+.editar-perfil{
+	background-color: white;
+	padding: 20px;
+	width: 100%;
+	border-radius: 15px;
+}
+
+.editar-perfil input[type=text],
+.editar-perfil input[type=password]{
+	width: 100%;
+	height: 40px;
+	padding-left: 30px;
+	border: none;
+	margin-bottom: 15px;
+	border-bottom: 1px solid #454545;
+	outline: none;
+	font-size: 17px;
+}
+
+.editar-perfil form{
+	text-align: right;
+}
+
+.editar-perfil input[type=submit]{
+	background-color:#dadada;
+	border-radius:15px;
+	border:1px solid #727171;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-size:15px;
+	font-weight:bold;
+	padding:10px 24px;
+	text-decoration:none;
+}
+
+.editar-perfil input[type=submit]:hover {
+	background-color:#e9e9e9;
+}
+
+.editar-perfil input[type=submit]:active {
+	position:relative;
+	top:1px;
+}
+
+.editar-perfil input[type=file]{
+	display: block;
+	margin: 10px 0;
+	border: none;
+	border: 1px dashed #666666;
+	width: 100%;
+	padding: 10px;
+}
